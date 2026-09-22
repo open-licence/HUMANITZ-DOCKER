@@ -4,6 +4,8 @@ services:
       context: ./humanitz
       dockerfile: Dockerfile
     platform: linux/amd64
+    environment:
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?Set ADMIN_PASSWORD in Timeweb App Platform variables}
     restart: unless-stopped
     stop_grace_period: 2m
     ports:
