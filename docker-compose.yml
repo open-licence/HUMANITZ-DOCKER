@@ -1,3 +1,4 @@
+name: humanitz
 services:
   humanitz:
     build:
@@ -5,10 +6,14 @@ services:
       dockerfile: Dockerfile
     platform: linux/amd64
     environment:
-      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?Set ADMIN_PASSWORD in Timeweb App Platform variables}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?Run sudo bash install.sh first}
+      SERVER_NAME: ${SERVER_NAME:-HumanitZ Community}
+      SERVER_PASSWORD: ${SERVER_PASSWORD:-}
       UPDATE_CHECK: "30"
     restart: unless-stopped
     stop_grace_period: 2m
+    volumes:
+      - humanitz-data:/data
     ports:
       - "7777:7777/udp"
       - "27015:27015/udp"
@@ -17,3 +22,6 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
+volumes:
+  humanitz-data:
+    name: humanitz-data
