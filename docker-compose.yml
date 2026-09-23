@@ -6,6 +6,7 @@ services:
     platform: linux/amd64
     environment:
       ADMIN_PASSWORD: ${ADMIN_PASSWORD:?Set ADMIN_PASSWORD in Timeweb App Platform variables}
+      UPDATE_CHECK: "30"
     restart: unless-stopped
     stop_grace_period: 2m
     ports:
